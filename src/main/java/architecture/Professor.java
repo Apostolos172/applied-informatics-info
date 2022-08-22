@@ -17,6 +17,14 @@ public class Professor {
 		this.phone = phone;
 		this.courses = new ArrayList<Course>();
 	}
+	
+	public Professor(String first_name, String last_name, String phone, String email) {
+		super();
+		this.first_name = first_name;
+		this.last_name = last_name;
+		this.phone = phone;
+		this.email = email;
+	}
 
 	public Professor(String first_name, String last_name, String phone, String email, ArrayList<Course> courses) {
 		super();
