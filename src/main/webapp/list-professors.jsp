@@ -26,5 +26,14 @@
 	</tr>
 </c:forEach>
 </table>
+<hr>
+<table>
+<tr>
+	<th>Add professor</th>
+</tr>
+<tr>
+	<td><a href="add-professor.jsp">ADD</a></td>
+</tr>
+</table>
 </body>
 </html>

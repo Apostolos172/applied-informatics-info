@@ -1,6 +1,7 @@
 package mvcModel;
 
 import java.sql.Connection;
+import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
@@ -69,6 +70,49 @@ public class ProfessorDBUtil {
 		}
 		
 		return professors;
+	}
+
+	public void addProfessor(Professor newProfessor) {
+		// TODO Auto-generated method stub
+		
+		Connection myConn = null;
+		PreparedStatement stmt = null;
+		
+		try {
+			myConn = this.datasource.getConnection();
+			
+			String sql = "insert into professor (first_name, last_name, email, phone) " + 
+					"values (?, ?, ?, ?)";
+			
+			stmt = myConn.prepareStatement(sql);
+			stmt.setString(1, newProfessor.getFirst_name());
+			stmt.setString(2, newProfessor.getLast_name());
+			stmt.setString(3, newProfessor.getEmail());
+			stmt.setString(4, newProfessor.getPhone());
+			stmt.execute();
+			
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		} finally {
+			close(myConn, stmt, null);
+		}
+		
+	}
+
+	private void close(Connection myConn, PreparedStatement stmt, ResultSet rs) {
+		// TODO Auto-generated method stub
+		try {
+			if(myConn!=null)
+				myConn.close();
+			if(stmt!=null)
+				stmt.close();
+			if(rs!=null)
+				rs.close();
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
 	}
 	
 }
