@@ -65,14 +65,25 @@ public class ProfessorControllerServlet extends HttpServlet {
 		    // code block
 			  addProfessor(request, response);
 		    break;
-		  case "":
+		  case "remove":
 		    // code block
+			  removeProfessor(request, response);
 		    break;
 		  default:
 			  listProfessors(request, response);
 		    // code block
 		}	
 		
+	}
+
+	private void removeProfessor(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+		// TODO Auto-generated method stub
+		String emailOfProfessorForRemoving = request.getParameter("email");
+		databaseAccesserObject.removeProfessor(emailOfProfessorForRemoving);
+		//listProfessors(request, response);
+		response.sendRedirect(request.getContextPath() + "/ProfessorControllerServlet"+"?command=list");
+		//System.out.println(request.getContextPath());
+
 	}
 
 	private void addProfessor(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {

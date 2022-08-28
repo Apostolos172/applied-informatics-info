@@ -42,7 +42,7 @@ public class ProfessorDBUtil {
 				Professor tempProf = new Professor(firstName, lastName, phone, email);
 				
 				professors.add(tempProf);
-				System.out.println(tempProf.toString());
+				// System.out.println(tempProf.toString());
 			}
 			
 		} catch (SQLException e) {
@@ -113,6 +113,27 @@ public class ProfessorDBUtil {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
+	}
+
+	public void removeProfessor(String emailOfProfessorForRemoving) {
+		// TODO Auto-generated method stub
+		Connection myConn = null;
+		PreparedStatement stmt = null;
+		
+		try {
+			myConn = datasource.getConnection();
+			// DELETE FROM table_name WHERE condition; 
+			String sql = "DELETE FROM professor WHERE professor.email=?; ";
+			stmt = myConn.prepareStatement(sql);
+			stmt.setString(1, emailOfProfessorForRemoving);
+			stmt.execute();
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		} finally {
+			close(myConn, stmt, null);
+		}
+		
 	}
 	
 }
