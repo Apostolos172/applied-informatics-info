@@ -1,8 +1,16 @@
 @charset "UTF-8";
 
 table, td, th {
-	border: 1px solid brown;
+	border: 1px solid #975B06;
 	text-align: center;
 	padding: 5px;
 	margin: 5px;
 }
+
+/*
+F5B50A yellow
+975B06 brown
+879A69 green
+1B1A1C black
+045092 blue
+*/

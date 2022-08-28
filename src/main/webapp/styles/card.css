@@ -1,0 +1,17 @@
+@charset "UTF-8";
+
+.applied-informatics-info__card {
+	background: #879A69;
+	padding: 20px;
+	margin: 20px;
+	border-radius: 20px;
+	box-shadow: 10px 10px 5px #aaaaaa;
+}
+
+/*
+F5B50A yellow
+975B06 brown
+879A69 green
+1B1A1C black
+045092 blue
+*/

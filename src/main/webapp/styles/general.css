@@ -2,4 +2,18 @@
 
 body {
 	background: beige;
+	background: #F5B50A;
+	color: #1B1A1C;
 }
+
+body a {
+	color: #1B1A1C;
+}
+
+/*
+F5B50A yellow
+975B06 brown
+879A69 green
+1B1A1C black
+045092 blue
+*/
