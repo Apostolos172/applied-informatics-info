@@ -135,5 +135,35 @@ public class ProfessorDBUtil {
 		}
 		
 	}
+
+	public Professor loadProfessor(String profEmail) {
+		// TODO Auto-generated method stub
+		Connection myConn = null;
+		PreparedStatement stmt = null;
+		ResultSet rs = null;
+		Professor prof = null;
+		//System.out.println(profEmail);
+		
+		try {
+			myConn = this.datasource.getConnection();
+			String sql = "SELECT * FROM professor WHERE professor.email=?; ";
+			stmt = myConn.prepareStatement(sql);
+			stmt.setString(1, profEmail);
+			rs = stmt.executeQuery();
+			
+			while(rs.next()) {
+				prof = new Professor(rs.getString("first_name"), rs.getString("last_name"), 
+						rs.getString("phone"), rs.getString("email"));
+				//System.out.println("here" + prof.toString());
+			}
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		} finally {
+			this.close(myConn, stmt, rs);
+		}
+		return prof;
+	}
+
 	
 }

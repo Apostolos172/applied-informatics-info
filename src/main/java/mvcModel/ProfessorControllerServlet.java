@@ -69,11 +69,24 @@ public class ProfessorControllerServlet extends HttpServlet {
 		    // code block
 			  removeProfessor(request, response);
 		    break;
+		  case "load":
+			  updateProfessorGet(request, response);
+			  break;
 		  default:
 			  listProfessors(request, response);
 		    // code block
 		}	
 		
+	}
+
+	private void updateProfessorGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+		// TODO Auto-generated method stub
+		String profEmail = request.getParameter("professorEmail");
+		Professor prof = this.databaseAccesserObject.loadProfessor(profEmail);
+		request.setAttribute("professor", prof);
+		System.out.println(prof.toString());
+		RequestDispatcher disp = request.getRequestDispatcher("/update-professor.jsp");
+		disp.forward(request, response);
 	}
 
 	private void removeProfessor(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
