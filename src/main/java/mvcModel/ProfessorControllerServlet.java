@@ -145,13 +145,28 @@ public class ProfessorControllerServlet extends HttpServlet {
 		    // code block
 			  addProfessor(request, response);
 		    break;
-		  case "":
-		    // code block
-		    break;
+		  case "update":
+			  updateProfessor(request, response);
+			  // to do update professor
+			  break;
 		  default:
 			  listProfessors(request, response);
 		    // code block
 		}	
+	}
+
+	private void updateProfessor(HttpServletRequest request, HttpServletResponse response) throws IOException {
+		// TODO Auto-generated method stub
+		String fname = request.getParameter("fname");
+		String lname = request.getParameter("lname");
+		String email = request.getParameter("email");
+		String phone = request.getParameter("phone");
+		String previousEmail = request.getParameter("previousEmail");
+		Professor prof = new Professor(fname, lname, phone, email);
+		this.databaseAccesserObject.updateProfessor(prof, previousEmail);
+		//System.out.println("getContextPath: " + this.getServletContext().getContextPath());
+		response.sendRedirect(this.getServletContext().getContextPath() + "/ProfessorControllerServlet"+"?command=list");
+		
 	}
 
 }

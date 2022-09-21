@@ -165,5 +165,30 @@ public class ProfessorDBUtil {
 		return prof;
 	}
 
+	public void updateProfessor(Professor prof, String previousEmail) {
+		// TODO Auto-generated method stub
+		Connection myConn = null;
+		PreparedStatement stmt = null;
+		
+		try {
+			myConn = this.datasource.getConnection();
+			String sql = "UPDATE professor SET "
+					+ "first_name = ?, last_name = ?, email = ?, phone = ? "
+					+ "WHERE professor.email = ?";
+			stmt = myConn.prepareStatement(sql);
+			stmt.setString(1, prof.getFirst_name());
+			stmt.setString(2, prof.getLast_name());
+			stmt.setString(3, prof.getEmail());
+			stmt.setString(4, prof.getPhone());
+			stmt.setString(5, previousEmail);
+			stmt.execute();
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		} finally {
+			this.close(myConn, stmt, null);
+		}
+		
+	}
 	
 }
