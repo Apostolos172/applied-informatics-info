@@ -1,0 +1,66 @@
+@charset "UTF-8";
+
+/* helpful resource: https://www.w3schools.com/howto/tryhow_css_parallax_demo.htm */
+
+body, html {
+  height: 100%;
+  margin: 0;
+}
+
+
+.bgimg-1, .bgimg-lab {
+  position: relative;
+  opacity: 0.65;
+  background-attachment: fixed;
+  background-position: center;
+  background-repeat: no-repeat;
+  background-size: cover;
+
+}
+
+.bgimg-1 {
+  background-color: #975B06;
+  background-image: url("./../images/logo-pamak.png");
+  min-height: 55%;
+}
+
+.bgimg-lab {
+	background-image: url("./../images/lab.jpg");
+ 	min-height: 55%;
+}
+
+nav, footer {
+	color: #777;
+	background-color: #1B1A1C;
+	text-align: center;
+	padding: 50px 80px;
+}
+
+main {
+	display: block;
+	padding: 30px;
+	font-family: 'EB Garamond', serif;
+	font-family: 'Indie Flower', cursive;
+}
+
+main form.applied-informatics-info__card {
+
+}
+
+main input {
+	font-family: 'EB Garamond', serif;
+	font-family: 'Indie Flower', cursive;
+}
+
+.left-element {
+	float: left;
+}
+
+.right-element {
+	float: right;
+}
+
+.right-element a{
+	color: #777;
+}
+
