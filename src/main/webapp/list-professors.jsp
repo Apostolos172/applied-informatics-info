@@ -68,3 +68,8 @@
 
 </body>
 </html>
+
+<!-- 
+to do: images in the list and
+categories of teacher
+ -->
