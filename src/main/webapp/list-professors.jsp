@@ -9,8 +9,19 @@
 <link rel="stylesheet" href="./styles/list-professors.css">
 <link rel="stylesheet" href="./styles/general.css">
 <link rel="stylesheet" href="./styles/card.css">
+<link rel="stylesheet" href="./styles/parallax-template.css">
+<%@ include file="styles/loadFonts.html" %>
+
 </head>
 <body>
+
+<%@ include file="templates/header.html" %>
+<nav>
+	<h2>Τμήμα Εφαρμοσμένης Πληροφορικής</h2>
+	<h3>Τμήμα Εφαρμοσμένης Πληροφορικής / Ακαδημαϊκό Προσωπικό</h3>
+</nav>
+
+<main>
 <h1 class="applied-informatics-info__card">applied-informatics-info</h1>
 <section class="applied-informatics-info__card">
 <table>
@@ -51,5 +62,9 @@
 </tr>
 </table>
 </section>
+</main>
+
+<%@ include file="templates/footer.html" %>
+
 </body>
 </html>
