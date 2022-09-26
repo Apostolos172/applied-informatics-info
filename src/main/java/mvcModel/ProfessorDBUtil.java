@@ -34,7 +34,9 @@ public class ProfessorDBUtil {
 		try {
 			myConn = this.datasource.getConnection();
 			
-			String sql = "SELECT * from professor;";
+			String sql = "SELECT * "
+					+ "FROM professor "
+					+ "ORDER BY cat DESC, last_name ASC; ";
 			stmt = myConn.createStatement();
 			rs = stmt.executeQuery(sql);
 			
