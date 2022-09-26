@@ -43,28 +43,9 @@ public class ProfessorDBUtil {
 				String lastName = rs.getString("last_name");
 				String email = rs.getString("email");
 				String phone = rs.getString("phone");
-				
 				String cat = rs.getString("cat");
 				
-				Professor tempProf = null;
-				switch(cat) {
-				  case "professor":
-					  tempProf = new NormalProfessor(firstName, lastName, phone, email);
-					  break;
-				  case "associate":
-					  tempProf = new Associate(firstName, lastName, phone, email);
-					  break;
-				  case "assistant":
-					  tempProf = new Assistant(firstName, lastName, phone, email);
-					  break;
-				  case "dean":
-					  tempProf = new Dean(firstName, lastName, phone, email);
-					  break;
-				  default:
-				    // code block
-				}
-
-				
+				Professor tempProf = Useful.getAppropriateProfessorObj(cat, firstName, lastName, phone, email);
 				professors.add(tempProf);
 				// System.out.println(tempProf.toString());
 			}
