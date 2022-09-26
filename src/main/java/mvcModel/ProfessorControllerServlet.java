@@ -4,6 +4,7 @@ import architecture.*;
 import util.Useful;
 
 import java.io.IOException;
+import java.nio.charset.StandardCharsets;
 import java.util.ArrayList;
 
 import javax.annotation.Resource;
@@ -103,8 +104,15 @@ public class ProfessorControllerServlet extends HttpServlet {
 	private void addProfessor(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		// TODO Auto-generated method stub
 		
+		//byte[] bytes;
 		String fname = request.getParameter("fname");
+//		System.out.println(fname);
+//		bytes = fname.getBytes(StandardCharsets.UTF_8);
+//		fname = new String(bytes, StandardCharsets.UTF_8);
+//		System.out.println(new String(bytes, StandardCharsets.UTF_8));
 		String lname = request.getParameter("lname");
+//		bytes = lname.getBytes(StandardCharsets.UTF_8);
+//		lname = new String(bytes, StandardCharsets.UTF_8);
 		String email = request.getParameter("email");
 		String phone = request.getParameter("phone");
 		String cat = request.getParameter("cat");
@@ -130,12 +138,16 @@ public class ProfessorControllerServlet extends HttpServlet {
 
 	}
 
+	@Override
 	/**
 	 * @see HttpServlet#doPost(HttpServletRequest request, HttpServletResponse response)
 	 */
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		// TODO Auto-generated method stub
 		// doGet(request, response);
+		
+        request.setCharacterEncoding("UTF-8");
+		
 		String command = null;
 		if(request.getParameter("command")==null)
 			command = "list";
