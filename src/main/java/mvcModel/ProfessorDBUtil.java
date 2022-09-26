@@ -9,6 +9,10 @@ import java.util.ArrayList;
 
 import javax.sql.DataSource;
 
+import architecture.Assistant;
+import architecture.Associate;
+import architecture.Dean;
+import architecture.NormalProfessor;
 import architecture.Professor;
 
 public class ProfessorDBUtil {
@@ -39,7 +43,26 @@ public class ProfessorDBUtil {
 				String email = rs.getString("email");
 				String phone = rs.getString("phone");
 				
-				Professor tempProf = new Professor(firstName, lastName, phone, email);
+				String cat = rs.getString("cat");
+				
+				Professor tempProf = null;
+				switch(cat) {
+				  case "professor":
+					  tempProf = new NormalProfessor(firstName, lastName, phone, email);
+					  break;
+				  case "associate":
+					  tempProf = new Associate(firstName, lastName, phone, email);
+					  break;
+				  case "assistant":
+					  tempProf = new Assistant(firstName, lastName, phone, email);
+					  break;
+				  case "dean":
+					  tempProf = new Dean(firstName, lastName, phone, email);
+					  break;
+				  default:
+				    // code block
+				}
+
 				
 				professors.add(tempProf);
 				// System.out.println(tempProf.toString());
