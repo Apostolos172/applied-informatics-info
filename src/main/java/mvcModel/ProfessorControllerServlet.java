@@ -82,7 +82,7 @@ public class ProfessorControllerServlet extends HttpServlet {
 	private void updateProfessorGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		// TODO Auto-generated method stub
 		String profEmail = request.getParameter("professorEmail");
-		Professor prof = this.databaseAccesserObject.loadProfessor(profEmail);
+		NormalProfessor prof = this.databaseAccesserObject.loadProfessor(profEmail);
 		request.setAttribute("professor", prof);
 		System.out.println(prof.toString());
 		RequestDispatcher disp = request.getRequestDispatcher("/update-professor.jsp");
@@ -107,7 +107,7 @@ public class ProfessorControllerServlet extends HttpServlet {
 		String email = request.getParameter("email");
 		String phone = request.getParameter("phone");
 		
-		Professor newProfessor = new Professor(fname, lname, phone, email);
+		NormalProfessor newProfessor = new NormalProfessor(fname, lname, phone, email);
 		this.databaseAccesserObject.addProfessor(newProfessor);
 		
 		//listProfessors(request, response);
@@ -162,7 +162,7 @@ public class ProfessorControllerServlet extends HttpServlet {
 		String email = request.getParameter("email");
 		String phone = request.getParameter("phone");
 		String previousEmail = request.getParameter("previousEmail");
-		Professor prof = new Professor(fname, lname, phone, email);
+		NormalProfessor prof = new NormalProfessor(fname, lname, phone, email);
 		this.databaseAccesserObject.updateProfessor(prof, previousEmail);
 		//System.out.println("getContextPath: " + this.getServletContext().getContextPath());
 		response.sendRedirect(this.getServletContext().getContextPath() + "/ProfessorControllerServlet"+"?command=list");

@@ -72,7 +72,7 @@ public class ProfessorDBUtil {
 		return professors;
 	}
 
-	public void addProfessor(Professor newProfessor) {
+	public void addProfessor(NormalProfessor newProfessor) {
 		// TODO Auto-generated method stub
 		
 		Connection myConn = null;
@@ -136,12 +136,12 @@ public class ProfessorDBUtil {
 		
 	}
 
-	public Professor loadProfessor(String profEmail) {
+	public NormalProfessor loadProfessor(String profEmail) {
 		// TODO Auto-generated method stub
 		Connection myConn = null;
 		PreparedStatement stmt = null;
 		ResultSet rs = null;
-		Professor prof = null;
+		NormalProfessor prof = null;
 		//System.out.println(profEmail);
 		
 		try {
@@ -152,7 +152,7 @@ public class ProfessorDBUtil {
 			rs = stmt.executeQuery();
 			
 			while(rs.next()) {
-				prof = new Professor(rs.getString("first_name"), rs.getString("last_name"), 
+				prof = new NormalProfessor(rs.getString("first_name"), rs.getString("last_name"), 
 						rs.getString("phone"), rs.getString("email"));
 				//System.out.println("here" + prof.toString());
 			}
@@ -165,7 +165,7 @@ public class ProfessorDBUtil {
 		return prof;
 	}
 
-	public void updateProfessor(Professor prof, String previousEmail) {
+	public void updateProfessor(NormalProfessor prof, String previousEmail) {
 		// TODO Auto-generated method stub
 		Connection myConn = null;
 		PreparedStatement stmt = null;
