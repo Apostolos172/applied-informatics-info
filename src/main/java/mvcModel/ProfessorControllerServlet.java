@@ -1,6 +1,7 @@
 package mvcModel;
 
 import architecture.*;
+import util.Useful;
 
 import java.io.IOException;
 import java.util.ArrayList;
@@ -106,9 +107,10 @@ public class ProfessorControllerServlet extends HttpServlet {
 		String lname = request.getParameter("lname");
 		String email = request.getParameter("email");
 		String phone = request.getParameter("phone");
+		String cat = request.getParameter("cat");
 		
-		NormalProfessor newProfessor = new NormalProfessor(fname, lname, phone, email);
-		this.databaseAccesserObject.addProfessor(newProfessor);
+		Professor newProf = Useful.getAppropriateProfessorObj(cat, fname, lname, phone, email);
+		this.databaseAccesserObject.addProfessor(newProf);
 		
 		//listProfessors(request, response);
 		response.sendRedirect(request.getContextPath() + "/ProfessorControllerServlet"+"?command=list");

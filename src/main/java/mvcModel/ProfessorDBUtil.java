@@ -14,6 +14,7 @@ import architecture.Associate;
 import architecture.Dean;
 import architecture.NormalProfessor;
 import architecture.Professor;
+import util.Useful;
 
 public class ProfessorDBUtil {
 	private DataSource datasource;
@@ -95,7 +96,7 @@ public class ProfessorDBUtil {
 		return professors;
 	}
 
-	public void addProfessor(NormalProfessor newProfessor) {
+	public void addProfessor(Professor newProfessor) {
 		// TODO Auto-generated method stub
 		
 		Connection myConn = null;
@@ -104,14 +105,16 @@ public class ProfessorDBUtil {
 		try {
 			myConn = this.datasource.getConnection();
 			
-			String sql = "insert into professor (first_name, last_name, email, phone) " + 
-					"values (?, ?, ?, ?)";
+			String sql = "insert into professor (first_name, last_name, email, phone, cat) " + 
+					"values (?, ?, ?, ?, ?)";
 			
 			stmt = myConn.prepareStatement(sql);
 			stmt.setString(1, newProfessor.getFirst_name());
 			stmt.setString(2, newProfessor.getLast_name());
 			stmt.setString(3, newProfessor.getEmail());
 			stmt.setString(4, newProfessor.getPhone());
+			stmt.setString(5, Useful.getProfessorTypeAlias(newProfessor.getType()));
+			System.out.println(Useful.getProfessorTypeAlias(newProfessor.getType()));
 			stmt.execute();
 			
 		} catch (SQLException e) {

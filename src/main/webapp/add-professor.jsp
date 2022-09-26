@@ -27,7 +27,15 @@
   	<label for="email">Email: </label><br>
   	<input type="email" id="email" name="email" value="John@gmail.com"><br>
   	<label for="phone">Phone: </label><br>
-  	<input type="text" id="phone" name="phone" value="12345678"><br><br>
+  	<input type="text" id="phone" name="phone" value="12345678"><br> 	
+  	<label for="cat">Category: </label><br>
+  	<select name="cat" id="cat">
+	    <option value="">--Please choose an option--</option>
+	    <option value="professor" selected>Καθηγητής</option>
+	    <option value="associate">Αναπληρωτής</option>
+	    <option value="assistant">Επίκουρος</option>
+	    <option value="dean">Κοσμήτορας</option>
+	</select><br><br>
   	<input type="submit" value="Πρόσθεσε">
 </form>
 </main>
