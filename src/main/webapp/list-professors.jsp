@@ -26,10 +26,13 @@
 <section class="applied-informatics-info__card">
 <table>
 <tr>
+	<th></th>
 	<th>Name</th>
 	<th>SurName</th>
 	<th>Phone</th>
 	<th>Email</th>
+	<th></th>
+	<th></th>
 	<th></th>
 </tr>
 <c:forEach var="tempProfessor" items="${professors }">

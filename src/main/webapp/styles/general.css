@@ -10,6 +10,17 @@ body a {
 	color: #1B1A1C;
 }
 
+table {
+  	border-collapse: collapse;
+  	border-color: transparent;
+}
+
+td, th {
+	border-color: #1B1A1C;
+	border-color: transparent;
+  	border-bottom: 2px dotted #F5B50A;
+}
+
 /*
 F5B50A yellow
 975B06 brown
