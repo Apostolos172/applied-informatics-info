@@ -2,6 +2,8 @@ package architecture;
 
 import java.util.ArrayList;
 
+import javax.servlet.http.HttpServletRequest;
+
 public class Dean extends NormalProfessor {
 	
 	public Dean(String first_name, String last_name, String phone) {
@@ -21,7 +23,13 @@ public class Dean extends NormalProfessor {
 		// TODO Auto-generated constructor stub
 		super.setType("Κοσμήτορας");
 	}
-	
+
+	public Dean(String firstName, String lastName, String phone2, String email2, HttpServletRequest request) {
+		super(firstName, lastName, phone2, email2, request);
+		// TODO Auto-generated constructor stub
+		super.setType("Κοσμήτορας");
+	}
+
 	@Override
 	public String getInfo() {
 		// TODO Auto-generated method stub
