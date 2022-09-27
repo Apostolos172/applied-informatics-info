@@ -9,7 +9,12 @@ import java.util.ArrayList;
 
 import javax.sql.DataSource;
 
+import architecture.Assistant;
+import architecture.Associate;
+import architecture.Dean;
+import architecture.NormalProfessor;
 import architecture.Professor;
+import util.Useful;
 
 public class ProfessorDBUtil {
 	private DataSource datasource;
@@ -29,7 +34,9 @@ public class ProfessorDBUtil {
 		try {
 			myConn = this.datasource.getConnection();
 			
-			String sql = "SELECT * from professor;";
+			String sql = "SELECT * "
+					+ "FROM professor "
+					+ "ORDER BY cat DESC, last_name ASC; ";
 			stmt = myConn.createStatement();
 			rs = stmt.executeQuery(sql);
 			
@@ -38,9 +45,9 @@ public class ProfessorDBUtil {
 				String lastName = rs.getString("last_name");
 				String email = rs.getString("email");
 				String phone = rs.getString("phone");
+				String cat = rs.getString("cat");
 				
-				Professor tempProf = new Professor(firstName, lastName, phone, email);
-				
+				Professor tempProf = Useful.getAppropriateProfessorObj(cat, firstName, lastName, phone, email);
 				professors.add(tempProf);
 				// System.out.println(tempProf.toString());
 			}
@@ -81,14 +88,16 @@ public class ProfessorDBUtil {
 		try {
 			myConn = this.datasource.getConnection();
 			
-			String sql = "insert into professor (first_name, last_name, email, phone) " + 
-					"values (?, ?, ?, ?)";
+			String sql = "insert into professor (first_name, last_name, email, phone, cat) " + 
+					"values (?, ?, ?, ?, ?)";
 			
 			stmt = myConn.prepareStatement(sql);
 			stmt.setString(1, newProfessor.getFirst_name());
 			stmt.setString(2, newProfessor.getLast_name());
 			stmt.setString(3, newProfessor.getEmail());
 			stmt.setString(4, newProfessor.getPhone());
+			stmt.setString(5, Useful.getProfessorTypeAlias(newProfessor.getType()));
+			System.out.println(Useful.getProfessorTypeAlias(newProfessor.getType()));
 			stmt.execute();
 			
 		} catch (SQLException e) {
@@ -136,12 +145,12 @@ public class ProfessorDBUtil {
 		
 	}
 
-	public Professor loadProfessor(String profEmail) {
+	public NormalProfessor loadProfessor(String profEmail) {
 		// TODO Auto-generated method stub
 		Connection myConn = null;
 		PreparedStatement stmt = null;
 		ResultSet rs = null;
-		Professor prof = null;
+		NormalProfessor prof = null;
 		//System.out.println(profEmail);
 		
 		try {
@@ -152,7 +161,7 @@ public class ProfessorDBUtil {
 			rs = stmt.executeQuery();
 			
 			while(rs.next()) {
-				prof = new Professor(rs.getString("first_name"), rs.getString("last_name"), 
+				prof = new NormalProfessor(rs.getString("first_name"), rs.getString("last_name"), 
 						rs.getString("phone"), rs.getString("email"));
 				//System.out.println("here" + prof.toString());
 			}
@@ -165,7 +174,7 @@ public class ProfessorDBUtil {
 		return prof;
 	}
 
-	public void updateProfessor(Professor prof, String previousEmail) {
+	public void updateProfessor(NormalProfessor prof, String previousEmail) {
 		// TODO Auto-generated method stub
 		Connection myConn = null;
 		PreparedStatement stmt = null;

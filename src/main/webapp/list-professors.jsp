@@ -30,6 +30,7 @@
 	<th>SurName</th>
 	<th>Phone</th>
 	<th>Email</th>
+	<th></th>
 </tr>
 <c:forEach var="tempProfessor" items="${professors }">
 	<c:url var="tempUrl" value="ProfessorControllerServlet">
@@ -45,10 +46,12 @@
 	<td>${tempProfessor.last_name }</td>
 	<td>${tempProfessor.phone }</td>
 	<td>${tempProfessor.email }</td>
+	<td>${tempProfessor.type }</td>
 	<td><a href="${tempUrl }">Remove</a></td>
 	<td><a href="${urlForUpdatingAProfessor }">Update</a></td>
 	</tr>
 </c:forEach>
+<%System.out.println(request.getAttribute("professors"));%>
 </table>
 </section>
 
