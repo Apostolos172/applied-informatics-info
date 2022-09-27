@@ -52,25 +52,47 @@ public class Useful {
 		return catAlias;
 	}
 	
-	public static Professor getAppropriateProfessorObj(String cat, String firstName, String lastName, String phone, String email) {
+	public static Professor getAppropriateProfessorObj(String cat, String firstName, String lastName, String phone, String email, HttpServletRequest request) {
 		Professor tempProf = null;
 		switch(cat) {
 		  case "professor":
-			  tempProf = new NormalProfessor(firstName, lastName, phone, email);
+			  tempProf = new NormalProfessor(firstName, lastName, phone, email, request);
 			  break;
 		  case "associate":
-			  tempProf = new Associate(firstName, lastName, phone, email);
+			  tempProf = new Associate(firstName, lastName, phone, email, request);
 			  break;
 		  case "assistant":
-			  tempProf = new Assistant(firstName, lastName, phone, email);
+			  tempProf = new Assistant(firstName, lastName, phone, email, request);
 			  break;
 		  case "dean":
-			  tempProf = new Dean(firstName, lastName, phone, email);
+			  tempProf = new Dean(firstName, lastName, phone, email, request);
 			  break;
 		  default:
 		    // do nothing
 		}
 		return tempProf;
 	}
+
+	public static Professor getAppropriateProfessorObj(String cat, String fname, String lname, String phone,
+			String email) {
+		// TODO Auto-generated method stub
+		Professor tempProf = null;
+		switch(cat) {
+		  case "professor":
+			  tempProf = new NormalProfessor(fname, lname, phone, email );
+			  break;
+		  case "associate":
+			  tempProf = new Associate(fname, lname, phone, email );
+			  break;
+		  case "assistant":
+			  tempProf = new Assistant(fname, lname, phone, email );
+			  break;
+		  case "dean":
+			  tempProf = new Dean(fname, lname, phone, email );
+			  break;
+		  default:
+		    // do nothing
+		}
+		return tempProf;	}
 
 }
