@@ -1,6 +1,11 @@
 package architecture;
 
+import java.io.File;
 import java.util.ArrayList;
+
+import javax.servlet.http.HttpServletRequest;
+
+import util.Useful;
 
 public class NormalProfessor implements Professor {
 	private String first_name;
@@ -8,6 +13,8 @@ public class NormalProfessor implements Professor {
 	private String phone;
 	private String email;
 	private String type;
+	private String alias;
+	private String photoName;
 	
 	private ArrayList<Course> courses;
 	
@@ -18,6 +25,8 @@ public class NormalProfessor implements Professor {
 		this.phone = phone;
 		this.courses = new ArrayList<Course>();
 		this.type = "Καθηγητής";
+		this.setAlias();
+		this.setPhotoName();
 	}
 	
 	public NormalProfessor(String first_name, String last_name, String phone, String email) {
@@ -27,6 +36,8 @@ public class NormalProfessor implements Professor {
 		this.phone = phone;
 		this.email = email;
 		this.type = "Καθηγητής";
+		this.setAlias();
+		this.setPhotoName();
 
 	}
 
@@ -38,7 +49,32 @@ public class NormalProfessor implements Professor {
 		this.email = email;
 		this.courses = courses;
 		this.type = "Καθηγητής";
+		this.setAlias();
+		this.setPhotoName();
 
+	}
+
+	public NormalProfessor(String firstName, String lastName, String phone2, String email2,
+			HttpServletRequest request) {
+		super();
+		this.first_name = firstName;
+		this.last_name = lastName;
+		this.phone = phone2;
+		this.email = email2;
+		this.type = "Καθηγητής";
+		this.setAlias();
+		this.setPhotoName(request);	
+		
+	}
+
+	private void setPhotoName(HttpServletRequest request) {
+		StringBuilder suffix = new StringBuilder("");
+		boolean exists = Useful.photoFileExists(this.alias, request, suffix);
+		if(!exists) {
+			this.photoName = "personphoto.jpg";
+		} else {
+			this.photoName = this.alias + suffix;
+		}		
 	}
 
 	@Override
@@ -116,5 +152,23 @@ public class NormalProfessor implements Professor {
 	public String getInfo() {
 		return this.type;
 	}
+	
+	public void setAlias() {
+		this.alias = this.email.substring(0,this.email.indexOf("@"));
+	}
+
+	public String getAlias() {
+		return alias;
+	}
+	
+	public void setPhotoName() {
+		this.photoName = "personphoto";
+	}
+
+	public String getPhotoName() {
+		return photoName;
+	}
+	
+	
 	
 }

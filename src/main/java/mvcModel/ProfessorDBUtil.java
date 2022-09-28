@@ -7,6 +7,7 @@ import java.sql.SQLException;
 import java.sql.Statement;
 import java.util.ArrayList;
 
+import javax.servlet.http.HttpServletRequest;
 import javax.sql.DataSource;
 
 import architecture.Assistant;
@@ -24,7 +25,7 @@ public class ProfessorDBUtil {
 		this.datasource = datasource;
 	}
 	
-	public ArrayList<Professor> getProfessors() {
+	public ArrayList<Professor> getProfessors(HttpServletRequest request) {
 		ArrayList<Professor> professors = new ArrayList<Professor>();
 		
 		Connection myConn = null;
@@ -47,7 +48,7 @@ public class ProfessorDBUtil {
 				String phone = rs.getString("phone");
 				String cat = rs.getString("cat");
 				
-				Professor tempProf = Useful.getAppropriateProfessorObj(cat, firstName, lastName, phone, email);
+				Professor tempProf = Useful.getAppropriateProfessorObj(cat, firstName, lastName, phone, email, request);
 				professors.add(tempProf);
 				// System.out.println(tempProf.toString());
 			}

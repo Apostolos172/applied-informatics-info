@@ -2,6 +2,8 @@ package architecture;
 
 import java.util.ArrayList;
 
+import javax.servlet.http.HttpServletRequest;
+
 public class Associate extends NormalProfessor implements Professor {
 	private String type;
 	
@@ -21,6 +23,13 @@ public class Associate extends NormalProfessor implements Professor {
 		super(first_name, last_name, phone, email, courses);
 		// TODO Auto-generated constructor stub
 		this.type = "Αναπληρωτής Καθηγητής";
+	}
+
+	public Associate(String firstName, String lastName, String phone2, String email2, HttpServletRequest request) {
+		super(firstName, lastName, phone2, email2, request);
+		// TODO Auto-generated constructor stub
+		this.type = "Αναπληρωτής Καθηγητής";
+
 	}
 
 	@Override

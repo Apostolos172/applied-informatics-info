@@ -26,10 +26,13 @@
 <section class="applied-informatics-info__card">
 <table>
 <tr>
+	<th></th>
 	<th>Name</th>
 	<th>SurName</th>
 	<th>Phone</th>
 	<th>Email</th>
+	<th></th>
+	<th></th>
 	<th></th>
 </tr>
 <c:forEach var="tempProfessor" items="${professors }">
@@ -42,6 +45,7 @@
 		<c:param name="command" value="load"></c:param>
 	</c:url>
 	<tr>
+	<td><img src="./images/professors/${tempProfessor.photoName }"></td>
 	<td>${tempProfessor.first_name }</td>
 	<td>${tempProfessor.last_name }</td>
 	<td>${tempProfessor.phone }</td>

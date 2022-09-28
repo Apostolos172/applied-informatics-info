@@ -3,6 +3,7 @@ package mvcModel;
 import architecture.*;
 import util.Useful;
 
+import java.io.File;
 import java.io.IOException;
 import java.nio.charset.StandardCharsets;
 import java.util.ArrayList;
@@ -129,7 +130,7 @@ public class ProfessorControllerServlet extends HttpServlet {
 	private void listProfessors(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		// TODO Auto-generated method stub
 		
-		ArrayList<Professor> professors = this.databaseAccesserObject.getProfessors();
+		ArrayList<Professor> professors = this.databaseAccesserObject.getProfessors(request);
 		request.setAttribute("professors", professors);
 		
 		// RequestDispatcher dispatcher = request.getRequestDispatcher("/test.jsp");
